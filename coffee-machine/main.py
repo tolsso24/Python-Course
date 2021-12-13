@@ -17,7 +17,7 @@ import Drink as drink
 
 # OBJECTS
 # Coffeemachine
-coffeeMachine = machine.Machine(100, 50, 76, 1)
+coffeeMachine = machine.Machine(100, 50, 76, 0)
 
 # Drinks
 espresso = drink.Drink("espresso", 10, 5, 5, 1.25)

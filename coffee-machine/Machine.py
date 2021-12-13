@@ -16,6 +16,10 @@ import Coin as coin
 
 # Coins
 quarter = coin.Coin("quarter", 0.25)
+dime = coin.Coin("dime", 0.25)
+nickel = coin.Coin("nickel", 0.05)
+pennie = coin.Coin("pennie", 0.01)
+coins = [quarter, dime, nickel, pennie]
 
 class Machine:
     def __init__(self, water, milk, coffee, money):
@@ -60,16 +64,15 @@ class Machine:
     def processCoins(self, drink):
         totalCoinsAdded = 0
         while totalCoinsAdded < drink.price:
-            print("Add coin by typing <amount> <cointype>, ex. 1 quarter")
-            print("Type abort to abort the purchase and get the money back")
-            coins = input(f"Input coin ({totalCoinsAdded} of {drink.price} added):")
-            if quarter.name in coins:
-                totalCoinsAdded += quarter.value * float(coins.split()[0])
-            elif "abort" in coins:
-                self.money += totalCoinsAdded
-                return totalCoinsAdded
-            else:
-                print("Uncorrect input...")
+            coin = input(f"Input coin ({totalCoinsAdded} of {drink.price} added):")
+            for c in coins:
+                if c in coins:
+                    totalCoinsAdded += c.value * float(coin.split()[0])
+                elif "abort" in coins:
+                    self.money += totalCoinsAdded
+                    return totalCoinsAdded
+                else:
+                    print("Uncorrect input...")
         self.money += totalCoinsAdded
         if totalCoinsAdded > drink.price:
             totalCoinsAdded -= drink.price
