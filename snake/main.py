@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from turtle import Screen
+from turtle import Screen, Turtle
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
@@ -48,15 +48,15 @@ while game_is_on:
 
     #Collision with wall.
     if snake.head.xcor() > 280 or snake.head.xcor() < -290 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        game_is_on = False
-        scoreboard.game_over()
+        scoreboard.reset()
+        snake.reset()
 
     #Collision with tail.
     for segment in snake.segments:
         if segment == snake.head:
             pass
         elif snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
 
 screen.exitonclick()
